@@ -6,11 +6,11 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Main {
-    private static final String CSV_FILE = "trransactions.csv";  // this is for csv file
+    private static final String CSV_FILE = "transactions.csv";  // this is for csv file
 
    //date & time formatters
    private static final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd"); // for date
-    private static final DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+    private static final DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss"); // for time
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -47,15 +47,35 @@ public class Main {
                     break;
                 default:
                     System.out.println("Invalid option. Please try Again.");
-                    showHomeScreen(scanner); // this added scanner would let you stay in home screen if its an invalid option
+                    showHomeScreen(scanner); // this added scanner would let you stay in home screen if it's an invalid option
             }
         }
 
     // for deposits and payments
     private static void addTransaction(Scanner scanner, String type) {
-    //trn  hh
-    System.out.println(type + "option selected.");
-    showHomeScreen(scanner); // this will go back to Home Screen  after adding the transaction
+    //#1 cache details for transaction
+        System.out.println("Enter Description: ");
+        String description = scanner.nextLine();
+        System.out.println("Enter Vendor: ");
+        String vendor = scanner.nextLine();
+        System.out.println("Enter Amount: ");
+        String amount = scanner.nextLine();
+
+    //#2 this will add negative signs to payments
+        if (type.equals("Payment"))  {
+            amount = "-" + Math.abs(Double.parseDouble(amount)); // this will MAKE SURE payments are negative
+        }
+
+     //#3 this will get the current date and time
+        String date = LocalDateTime.now().format(dateFormatter); //for the date
+        String time = LocalDateTime.now().format(timeFormatter); //for the time
+
+    //test
+        System.out.println("Transaction Date: " + date);
+        System.out.println("Transaction Time: " + time);
+        System.out.println("Transaction Description: " + description);
+        System.out.println("Transaction Vendor: " + vendor);
+        System.out.println("Transaction Amount: " + amount);
 }
 
 // Ledger
