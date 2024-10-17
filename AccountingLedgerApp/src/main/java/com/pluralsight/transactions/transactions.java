@@ -1,4 +1,4 @@
 package com.pluralsight.transactions;
 
-public class transactions {
+public class transactions  {
 }
