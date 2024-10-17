@@ -1,11 +1,19 @@
 package com.pluralsight;
 
 import java.util.Scanner;
+//for date and time formatters
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Main {
+    private static final String CSV_FILE = "trransactions.csv";  // this is for csv file
+
+   //date & time formatters
+   private static final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd"); // for date
+    private static final DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-
         //Where home screen starts
         showHomeScreen(scanner);
     }
