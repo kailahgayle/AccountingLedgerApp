@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Main {
-    private static final String CSV_FILE = "transactions.csv";  // this is for csv file
+    private static final String CSV = "transactions.csv";  // this is for csv file
 
    //date & time formatters
    private static final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd"); // for date
