@@ -14,7 +14,16 @@ Make Debit Payments
 
 and Navigate to a ledger screen which will display all entries
 
-filter to show deposits only
 
+filter to show deposits or payments only
 
-Filter to show payments only
+Check Reports for more filtered search which entails 
+Month to Date 
+
+Previouis Month 
+
+Year to Date
+
+Previous Year
+
+Search by Vendor 
