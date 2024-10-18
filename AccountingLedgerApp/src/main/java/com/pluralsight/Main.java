@@ -1,5 +1,6 @@
 package com.pluralsight;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.util.Scanner;
 //for date and time formatters
@@ -50,15 +51,6 @@ public class Main {
             }
         }
     }
-    public static void displayAllEntries() {
-        System.out.println("\n---ALL LEDGER ENTRIES---");
-    }
-    public static void displayDepositEntries() {
-        System.out.println("\n---DEPOSITS---");
-    }
-    public static void displayPaymentEntries() {
-        System.out.println("\n---PAYMENTS");
-    }
 
 
     // for deposits and payments
@@ -101,9 +93,9 @@ public class Main {
     // Ledger
     private static void showLedgerScreen(Scanner scanner) {
         System.out.println("Ledger screen selected.");
-        System.out.println("A) All transactions");
-        System.out.println("D) Deposits");
-        System.out.println("P) Payments");
+        System.out.println("A) All transactions ");
+        System.out.println("D) Deposits ");
+        System.out.println("P) Payments ");
         System.out.println("R) Reports");
         System.out.println("H) Home");
         System.out.println("Please Enter a Choice:");
@@ -133,7 +125,26 @@ public class Main {
         }
     }
 
-    // this will display the Ledger
+    // this will display the Ledger entries
+    public static void displayAllEntries() {
+        System.out.println("\n---ALL LEDGER ENTRIES---");
+      //this will make sure entries are shown from csv
+        try (Scanner fileReader = new Scanner(new File(CSV))) {
+            while (fileReader.hasNextLine()) {
+                String line = fileReader.nextLine();
+                System.out.println(line);
+            }
+        } catch (Exception e) {
+            System.out.println("Error...");
+        }
+    }
+    public static void displayDepositEntries() {
+        System.out.println("\n---DEPOSITS---");
+    }
+    public static void displayPaymentEntries() {
+        System.out.println("\n---PAYMENTS");
+    }
+
 
 
     // this will show reports
