@@ -120,7 +120,7 @@ public class Main {
                 break;
             default:
                 System.out.println("Invalid option. Please try Again.");
-                showLedgerScreen(scanner); // this ensures that you will stay in Ledger
+                showHomeScreen(scanner); // this ensures that you will go home after mistake
         }
     }
 // this will display the Ledger
