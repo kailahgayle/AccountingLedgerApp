@@ -144,7 +144,9 @@ public class Main {
         try (Scanner fileReader = new Scanner(new File(CSV))) {
             while (fileReader.hasNextLine()) {
                 String line = fileReader.nextLine();
-                if (!line.contains("-")) { //for positive values
+                String[] transactionParts = line.split("\\|"); //this split breaks down transactions individually
+                double amount = Double.parseDouble(transactionParts[4].trim()); //"if" the layout remains the same
+                if (amount > 0) { // distinguishes this is a deposit if its a positive #
                     System.out.println(line);
                 }
             }
@@ -153,18 +155,20 @@ public class Main {
         }
     }
     public static void displayPaymentEntries() {
-        System.out.println("\n---PAYMENTS");
+        System.out.println("\n---PAYMENTS---");
         //this will make sure entries are shown from csv
         try (Scanner fileReader = new Scanner(new File(CSV))) {
             while (fileReader.hasNextLine()) {
                 String line = fileReader.nextLine();
-                if (!line.contains("-")) { //for positive values
+                String[] transactionParts = line.split("\\|"); //this split breaks down transactions individually
+                double amount = Double.parseDouble(transactionParts[4].trim()); //"if" the layout remains the same
+                if (amount < 0) { // distinguishes this is a deposit if its a positive #
                     System.out.println(line);
                 }
             }
         } catch (Exception e) {
             System.out.println("Error...");
-        }
+    }
 
     }
 
