@@ -9,7 +9,7 @@ import java.time.format.DateTimeFormatter;
 public class Main {
     private static final String CSV = "transactions.csv";  // this is for csv file
 
-    private static final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-mm-dd"); // for date
+    private static final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd"); // for date
     private static final DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss"); // for time
 
     public static void main(String[] args) {
@@ -17,40 +17,48 @@ public class Main {
         showHomeScreen(scanner);//Where home screen starts
     }
 
-        //Home Screen Options
-        private static void showHomeScreen(Scanner scanner) {
-            while (true) { //make sure app stays open until user exits
-                System.out.println("Home Screen");
-                System.out.println("D) Add Deposit");
-                System.out.println("P) Make Payment (Debit)");
-                System.out.println("L) Show Ledger");
-                System.out.println("X) Exit");
-                System.out.println("Please Enter a Choice: ");
+    //Home Screen Options
+    private static void showHomeScreen(Scanner scanner) {
+        while (true) { //make sure app stays open until user exits
+            System.out.println("Home Screen");
+            System.out.println("D) Add Deposit");
+            System.out.println("P) Make Payment (Debit)");
+            System.out.println("L) Show Ledger");
+            System.out.println("X) Exit");
+            System.out.println("Please Enter a Choice: ");
 
-                // Prompt for user input
-                String choice = scanner.nextLine().toUpperCase();
+            // Prompt for user input
+            String choice = scanner.nextLine().toUpperCase();
 
-                //Results after user input
-                switch (choice) {
-                    case "D":
-                        addTransaction(scanner, "Deposit");
-                        break;
-                    case "P":
-                        addTransaction(scanner, "Payment");
-                        break;
-                    case "L":
-                        showLedgerScreen(scanner);
-                        break;
-                    case "X":
-                        System.out.println("Exiting..");
-                        return; //this will exit program
-                    default:
-                        System.out.println("Invalid option. Please try Again.");
-                        break; // this added scanner would let you stay in home screen if it's an invalid option
-                }
+            //Results after user input
+            switch (choice) {
+                case "D":
+                    addTransaction(scanner, "Deposit");
+                    break;
+                case "P":
+                    addTransaction(scanner, "Payment");
+                    break;
+                case "L":
+                    showLedgerScreen(scanner);
+                    break;
+                case "X":
+                    System.out.println("Exiting..");
+                    return; //this will exit program
+                default:
+                    System.out.println("Invalid option. Please try Again.");
+                    break; // this added scanner would let you stay in home screen if it's an invalid option
             }
         }
-
+    }
+    public static void displayAllEntries() {
+        System.out.println("\n---ALL LEDGER ENTRIES---");
+    }
+    public static void displayDepositEntries() {
+        System.out.println("\n---DEPOSITS---");
+    }
+    public static void displayPaymentEntries() {
+        System.out.println("\n---PAYMENTS");
+    }
 
 
     // for deposits and payments
@@ -90,7 +98,7 @@ public class Main {
     }
 
 
-// Ledger
+    // Ledger
     private static void showLedgerScreen(Scanner scanner) {
         System.out.println("Ledger screen selected.");
         System.out.println("A) All transactions");
@@ -98,19 +106,19 @@ public class Main {
         System.out.println("P) Payments");
         System.out.println("R) Reports");
         System.out.println("H) Home");
-        System.out.println("D) Please Enter a Choice:");
+        System.out.println("Please Enter a Choice:");
 
         String choice = scanner.nextLine().toUpperCase();
 
         switch (choice) {
             case "A":
-                displayLedger("All");
+                displayAllEntries();
                 break;
             case "D":
-                displayLedger("DEPOSITS");
+                displayDepositEntries();
                 break;
             case "P":
-                displayLedger("PAYMENTS");
+                displayPaymentEntries();
                 break;
             case "R":
                 showReportsScreen(scanner);
@@ -120,19 +128,17 @@ public class Main {
                 break;
             default:
                 System.out.println("Invalid option. Please try Again.");
+                showLedgerScreen(scanner); // this ensures that you will stay in Ledger
                 showHomeScreen(scanner); // this ensures that you will go home after mistake
         }
     }
-// this will display the Ledger
-    private static void displayLedger(String filter) {
-        //transactions will be displayed here with filter
-        System.out.println("Displaying" + filter + "transactions");
-        showLedgerScreen(new Scanner(System.in));
-    }
-// this will show reports
-    private static void showReportsScreen(Scanner scanner) {
+
+    // this will display the Ledger
+
+
+    // this will show reports
+    public static void showReportsScreen(Scanner scanner) {
         //reports screen method
-        System.out.println("Reports screen selected.");
-        showLedgerScreen(scanner);
+        System.out.println("\n---REPORTS---");
     }
 }
