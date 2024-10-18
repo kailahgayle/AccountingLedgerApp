@@ -140,9 +140,32 @@ public class Main {
     }
     public static void displayDepositEntries() {
         System.out.println("\n---DEPOSITS---");
+        //this will make sure entries are shown from csv
+        try (Scanner fileReader = new Scanner(new File(CSV))) {
+            while (fileReader.hasNextLine()) {
+                String line = fileReader.nextLine();
+                if (!line.contains("-")) { //for positive values
+                    System.out.println(line);
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Error...");
+        }
     }
     public static void displayPaymentEntries() {
         System.out.println("\n---PAYMENTS");
+        //this will make sure entries are shown from csv
+        try (Scanner fileReader = new Scanner(new File(CSV))) {
+            while (fileReader.hasNextLine()) {
+                String line = fileReader.nextLine();
+                if (!line.contains("-")) { //for positive values
+                    System.out.println(line);
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Error...");
+        }
+
     }
 
 
